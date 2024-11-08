@@ -2,23 +2,33 @@ pipeline {
     agent any
 
     stages {
-        stage('checkout') {
+        stage('Build') {
             steps {
-              checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'amin', url: 'https://github.com/Gowhar-Amin/Test.git']]) 
-               
+                echo 'Build stage: Hi, Hello!'
             }
         }
-    stage ("Terraform init"){
-        steps {
-            sh("date");
+
+        stage('Test') {
+            steps {
+                echo 'Test stage: Displaying current date and time...'
+                // Display the current date and time
+                sh 'date'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploy stage: Success'
+            }
         }
     }
-    stage ("time"){
-        steps {
-            echo "Terraform action parameter is --> ${action}"
-            sh("terraform ${action} --auto-approve");
-            
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
         }
     }
-  }
 }
