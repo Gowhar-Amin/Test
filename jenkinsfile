@@ -4,16 +4,16 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-              checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'c4c6589a-4a60-4169-9d8f-0c01dce71188', url: 'https://github.com/NAGESHGOWDA1993/AWS-EC2-JENKINS-TF.git']]) 
+              checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'amin', url: 'https://github.com/Gowhar-Amin/Test.git']]) 
                
             }
         }
     stage ("Terraform init"){
         steps {
-            sh("terraform init");
+            sh("date");
         }
     }
-    stage ("Terraform Action"){
+    stage ("time"){
         steps {
             echo "Terraform action parameter is --> ${action}"
             sh("terraform ${action} --auto-approve");
