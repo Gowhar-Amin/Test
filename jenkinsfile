@@ -11,8 +11,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Test stage: Displaying current date and time...'
-                // Display the current date and time
-                sh 'date'
+                // Use Windows command
+                bat 'echo %DATE% %TIME%'
             }
         }
 
